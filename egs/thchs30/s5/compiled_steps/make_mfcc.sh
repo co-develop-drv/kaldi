@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 
 # Copyright 2012-2016  Johns Hopkins University (Author: Daniel Povey)
 # Apache 2.0
@@ -76,7 +76,7 @@ for f in $required; do
     exit 1;
   fi
 done
-utils/validate_data_dir.sh --no-text --no-feats $data || exit 1; #没什么特别值得说的，主要是通过临时文件检查准备的文件和之前生成的文件是否齐全，内容、互相的对应、排序等是否正确，包括很多可选文件如果存在的话，判断逻辑几乎都差不多，我感觉有时间可以写个函数简化一下
+utils/validate_data_dir.sh --no-text --no-feats $data || exit 1; #没什么特别值得说的，主要是通过临时文件检查准备的文件和之前生成的文件是否齐全，内容、互相的对应、排序等是否正确，包括很多可选文件如果存在的话，判断逻辑几乎都差不多，我感觉应该可以用函数简化一下
 
 #VTLN:Vocal Tract Length Normalisation 声道长度归一化
 if [ -f $data/spk2warp ]; then
