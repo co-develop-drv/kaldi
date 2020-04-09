@@ -1,13 +1,7 @@
-﻿#!/bin/bash
+#!/bin/bash
 
-# Copyright 2012-2016  Johns Hopkins University (Author: Daniel Povey)
-# Apache 2.0
-# To be run from .. (one directory up from here)
-# see ../run.sh for example
-
-
-# . ./path.sh
-# . ./cmd.sh
+. ./path.sh
+. ./cmd.sh
 
 #循环内部，以train为例
 # Begin configuration section.
@@ -127,20 +121,28 @@ else
   for n in $(seq $nj); do
     split_scps="$split_scps $logdir/wav_${name}.$n.scp"
   done
-  echo "$split_scps";  #exp/make_mfcc/train/wav_train.1.scp exp/make_mfcc/train/wav_train.2.scp exp/make_mfcc/train/wav_train.3.scp exp/make_mfcc/train/wav_train.4.scp exp/make_mfcc/train/wav_train.5.scp exp/make_mfcc/train/wav_train.6.scp exp/make_mfcc/train/wav_train.7.scp exp/make_mfcc/train/wav_train.8.scp
+#   echo "$split_scps";  #exp/make_mfcc/train/wav_train.1.scp exp/make_mfcc/train/wav_train.2.scp exp/make_mfcc/train/wav_train.3.scp exp/make_mfcc/train/wav_train.4.scp exp/make_mfcc/train/wav_train.5.scp exp/make_mfcc/train/wav_train.6.scp exp/make_mfcc/train/wav_train.7.scp exp/make_mfcc/train/wav_train.8.scp
 
-#   utils/split_scp.pl $scp $split_scps || exit 1;
+  # wav.scp或按说话人句子拆分，平均或按说话人尽量平均，计算过程里面注释得都很细了，就不写了
+  utils/split_scp.pl $scp $split_scps || exit 1;
 
 
-#   # add ,p to the input rspecifier so that we can just skip over
-#   # utterances that have bad wave data.
+  # add ,p to the input rspecifier so that we can just skip over
+  # utterances that have bad wave data.
 
-#   $cmd JOB=1:$nj $logdir/make_mfcc_${name}.JOB.log \
-#     compute-mfcc-feats  $vtln_opts --verbose=2 --config=$mfcc_config \
-#      scp,p:$logdir/wav_${name}.JOB.scp ark:- \| \
-#       copy-feats $write_num_frames_opt --compress=$compress ark:- \
-#       ark,scp:$mfccdir/raw_mfcc_$name.JOB.ark,$mfccdir/raw_mfcc_$name.JOB.scp \
-#       || exit 1;
+  # echo "$logdir/make_mfcc_${name}.JOB.log"; # exp/make_mfcc/train/make_mfcc_train.JOB.log
+  # run.pl
+  # JOB=1:8 exp/make_mfcc/train/make_mfcc_train.JOB.log 
+  # compute-mfcc-feats --verbose=2 --config=conf/mfcc.conf
+  # scp,p:exp/make_mfcc/train/wav_train.JOB.scp ark:-|
+  # copy-feats --compress=true ark:-
+  # ark,scp:绝对路徑/kaldi-trunk/egs/thchs30/s5/mfcc/train/raw_mfcc_train.JOB.ark,.../s5/mfcc/train/raw_mfcc_train.JOB.scp
+  $cmd JOB=1:$nj $logdir/make_mfcc_${name}.JOB.log \
+    compute-mfcc-feats  $vtln_opts --verbose=2 --config=$mfcc_config \
+     scp,p:$logdir/wav_${name}.JOB.scp ark:- \| \
+      copy-feats $write_num_frames_opt --compress=$compress ark:- \
+      ark,scp:$mfccdir/raw_mfcc_$name.JOB.ark,$mfccdir/raw_mfcc_$name.JOB.scp \
+      || exit 1;
 fi
 
 
