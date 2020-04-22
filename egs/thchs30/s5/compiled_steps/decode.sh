@@ -89,6 +89,7 @@ if [ $(basename $model) != final.alimdl ] ; then
   fi
 fi
 
+# job要用的feats.scp cmvn.scp final.mdl HCLG.fst缺一不可，只检查切分的第一个
 for f in $sdata/1/feats.scp $sdata/1/cmvn.scp $model $graphdir/HCLG.fst; do
   [ ! -f $f ] && echo "decode.sh: no such file $f" && exit 1;
 done
