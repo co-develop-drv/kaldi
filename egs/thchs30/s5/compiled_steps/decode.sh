@@ -59,7 +59,9 @@ if [ $# != 3 ]; then
    exit 1;
 fi
 
-
+# graphdir=${base_path}/exp/tri3a/graph
+# data=${base_path}/data/dev                                  #${audio}
+# dir=${online_path}/result/tri3a/decode_dev
 graphdir=$1
 data=$2
 dir=$3
@@ -71,6 +73,7 @@ mkdir -p $dir/log
 [[ -d $sdata && $data/feats.scp -ot $sdata ]] || split_data.sh $data $nj || exit 1;
 echo $nj > $dir/num_jobs
 
+# [ -z STRING ]  “STRING” 的长度为零则为真
 if [ -z "$model" ]; then # if --model <mdl> was not specified on the command line...
   if [ -z $iter ]; then model=$srcdir/final.mdl;
   else model=$srcdir/$iter.mdl; fi
