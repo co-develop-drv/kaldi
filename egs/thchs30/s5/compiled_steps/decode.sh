@@ -130,6 +130,11 @@ fi
 
 if [ $stage -le 0 ]; then
   if [ -f "$graphdir/num_pdfs" ]; then
+    # 用 am-info $model 提取 模型的 number of pdfs 与文件内容对比
+    # pdf 概率密度函数 hmm-gmm模型中pdf对应混合高斯模型数量，hmm-nnet模型对应神经网络输出的维度数
+    # transition-state是一个（phone, hmm-state, forward pdf, self-loop pdf)的四元祖
+    # 每个状态可以发射若干条弧（自旋或跳转，参考自动机），弧编序号transition-id有一个对应的pdf-id
+    # pdf-id pdf的序号，从0开始。gmm/nnet等声学模型输出的是每个pdf-id对应的后验概率
     [ "`cat $graphdir/num_pdfs`" -eq `am-info --print-args=false $model | grep pdfs | awk '{print $NF}'` ] || \
       { echo "Mismatch in number of pdfs with $model"; exit 1; }
   fi
