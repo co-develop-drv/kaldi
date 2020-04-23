@@ -61,7 +61,7 @@ fi
 
 # graphdir=${base_path}/exp/tri3a/graph
 # data=${base_path}/data/dev                                  #${audio}
-# dir=${online_path}/result/tri3a/decode_dev
+# dir=${base_path}/exp/tri3a/decode_dev                       #${online_path}/result/tri3a/decode_dev
 graphdir=$1
 data=$2
 dir=$3
@@ -101,6 +101,7 @@ splice_opts=`cat $srcdir/splice_opts 2>/dev/null` # frame-splicing options.
 cmvn_opts=`cat $srcdir/cmvn_opts 2>/dev/null`
 delta_opts=`cat $srcdir/delta_opts 2>/dev/null`
 
+# 各种拼参数
 thread_string=
 [ $num_threads -gt 1 ] && thread_string="-parallel --num-threads=$num_threads"
 
