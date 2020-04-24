@@ -1,4 +1,4 @@
-
+# 并行运行工具，可独立于Kaldi使用
 #!/usr/bin/env perl
 use warnings; #sed replacement for -w perl parameter
 
@@ -197,6 +197,7 @@ if ($max_jobs_run == -1) { # If --max-jobs-run option not set,
 #     # executes the job and returns (possibly with an error status).
 #     if (defined $jobname) {
 #       $cmd =~ s/$jobname/$jobid/g;
+#       print $cmd; 实际执行的命令
 #       $logfile =~ s/$jobname/$jobid/g;
 #     }
 #     system("mkdir -p `dirname $logfile` 2>/dev/null");
