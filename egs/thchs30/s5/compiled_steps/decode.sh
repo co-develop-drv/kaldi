@@ -140,6 +140,8 @@ if [ $stage -le 0 ]; then
   fi
 
   # gmm-latgen-faster --max-active=7000 --beam=13.0 --lattice-beam=6.0 --acoustic-scale=0.083333 --allow-partial=true --word-symbol-table=/export1/kaldi-ali/kaldi-trunk/egs/aishell/s5/exp/tri3a/graph/words.txt /export1/kaldi-ali/kaldi-trunk/egs/aishell/s5/exp/tri3a/final.mdl /export1/kaldi-ali/kaldi-trunk/egs/aishell/s5/exp/tri3a/graph/HCLG.fst "ark,s,cs:apply-cmvn  --utt2spk=ark:/export1/kaldi-ali/kaldi-trunk/egs/aishell/s5/data/dev/split1/1/utt2spk scp:/export1/kaldi-ali/kaldi-trunk/egs/aishell/s5/data/dev/split1/1/cmvn.scp scp:/export1/kaldi-ali/kaldi-trunk/egs/aishell/s5/data/dev/split1/1/feats.scp ark:- | splice-feats  ark:- ark:- | transform-feats /export1/kaldi-ali/kaldi-trunk/egs/aishell/s5/exp/tri3a/final.mat ark:- ark:- |" "ark:|gzip -c > /export1/kaldi-ali/kaldi-trunk/egs/aishell/online/result/tri3a/lat.1.gz"
+  # apply-cmvn  --utt2spk=ark:/export1/kaldi-ali/kaldi-trunk/egs/aishell/s5/data/dev/split1/1/utt2spk scp:/export1/kaldi-ali/kaldi-trunk/egs/aishell/s5/data/dev/split1/1/cmvn.scp scp:/export1/kaldi-ali/kaldi-trunk/egs/aishell/s5/data/dev/split1/1/feats.scp ark:- | splice-feats  ark:- ark:- | transform-feats /export1/kaldi-ali/kaldi-trunk/egs/aishell/s5/exp/tri3a/final.mat ark:- ark:- | echo
+  
   $cmd --num-threads $num_threads JOB=1:$nj $dir/log/decode.JOB.log \
     gmm-latgen-faster$thread_string --max-active=$max_active --beam=$beam --lattice-beam=$lattice_beam \
     --acoustic-scale=$acwt --allow-partial=true --word-symbol-table=$graphdir/words.txt $decode_extra_opts \
