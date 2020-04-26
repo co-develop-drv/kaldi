@@ -28,7 +28,7 @@ find $audio_path -iname "*.wav" > $scp_path/wav.flist
 
 sed -e 's/\.wav//' $scp_path/wav.flist | awk -F '/' '{print $NF}' > $scp_path/utt.list
 
-# °´/·Ö¸ôÈ¡µ¹ÊýµÚ¶þ¸ö£¬Ò²¾ÍÊÇÈ¡wavËùÔÚÄ¿Â¼µÄÄ¿Â¼Ãû×öspeaker
+# æŒ‰/åˆ†éš”å–å€’æ•°ç¬¬äºŒä¸ªï¼Œä¹Ÿå°±æ˜¯å–wavæ‰€åœ¨ç›®å½•çš„ç›®å½•ååšspeaker
 # sed -e 's/\.wav//' $scp_path/wav.flist | awk -F '/' '{i=NF-1;printf("%s %s\n",$NF,$i)}' > $scp_path/utt2spk_all
 # 
 sed -e 's/\.wav//' $scp_path/wav.flist | awk -F '/' '{printf("%s %s\n",$NF,$NF)}' > $scp_path/utt2spk_all
@@ -60,14 +60,14 @@ echo ""
 echo "prepared!"
 echo ""
 
-# Çø±ðÌØÕ÷ÌáÈ¡£ºLDA¡¢MLLR¡¢SAT¡¢fbMMI
-# Çø·Ö¶ÈÄ£ÐÍÑµÁ·£ºMMI¡¢MPE¡¢MCE¡¢smbr
-# tri2£¨delta+delta-deltas£©
+# åŒºåˆ«ç‰¹å¾æå–ï¼šLDAã€MLLRã€SATã€fbMMI
+# åŒºåˆ†åº¦æ¨¡åž‹è®­ç»ƒï¼šMMIã€MPEã€MCEã€smbr
+# tri2ï¼ˆdelta+delta-deltasï¼‰
 # tri3a[LDA+MLLT]
 # tri4
-# tri5£¨SAT£©
+# tri5ï¼ˆSATï¼‰
 
-gmm-latgen-faster --max-active=2000 --beam=8.0 --lattice-beam=6.0 --acoustic-scale=0.083333 --allow-partial=true --word-symbol-table=${words_u} ${models_path}/final.alimdl ${hclg_u} "ark,s,cs:apply-cmvn --utt2spk=ark:${utt2spk_u} scp:${cmvn_u} scp:${feats_u} ark:- | splice-feats ark:- ark:- | transform-feats ${models_path}/final.mat ark:- ark:- |" "ark:|gzip -c > ${result_path}/lat.1.gz"
+gmm-latgen-faster --max-active=2000 --beam=8.0 --lattice-beam=6.0 --acoustic-scale=0.083333 --allow-partial=true --word-symbol-table=${words_u} ${models_path}/final.alimdl ${hclg_u} "ark,s,cs:apply-cmvn --utt2spk=ark:${utt2spk_u} scp:${cmvn_u} scp:${feats_u} ark:- | splice-feats ark:- ark:- | transform-feats ${models_path}/final.mat ark:- ark:- |" "ark:|gzip -c >/dev/null"
 
 # gmm-latgen-faster --max-active=2000 --beam=8.0 --lattice-beam=6.0 --acoustic-scale=0.083333 --allow-partial=true --word-symbol-table=exp/tri5a/graph/words.txt exp/tri5a/final.alimdl exp/tri5a/graph/HCLG.fst "ark,s,cs:apply-cmvn  --utt2spk=ark:data/dev/split1/1/utt2spk scp:data/dev/split1/1/cmvn.scp scp:data/dev/split1/1/feats.scp ark:- | splice-feats  ark:- ark:- | transform-feats exp/tri5a/final.mat ark:- ark:- |" "ark:|gzip -c > exp/tri5a/decode_dev.si/lat.1.gz"
 
