@@ -26,7 +26,7 @@ find $audio_path -iname "*.wav" > $scp_path/wav.flist
 
 sed -e 's/\.wav//' $scp_path/wav.flist | awk -F '/' '{print $NF}' > $scp_path/utt.list
 
-# °´/·Ö¸ôÈ¡µ¹ÊýµÚ¶þ¸ö£¬Ò²¾ÍÊÇÈ¡wavËùÔÚÄ¿Â¼µÄÄ¿Â¼Ãû×öspeaker
+# æŒ‰/åˆ†éš”å–å€’æ•°ç¬¬äºŒä¸ªï¼Œä¹Ÿå°±æ˜¯å–wavæ‰€åœ¨ç›®å½•çš„ç›®å½•ååšspeaker
 # sed -e 's/\.wav//' $scp_path/wav.flist | awk -F '/' '{i=NF-1;printf("%s %s\n",$NF,$i)}' > $scp_path/utt2spk_all
 # 
 sed -e 's/\.wav//' $scp_path/wav.flist | awk -F '/' '{printf("%s %s\n",$NF,$NF)}' > $scp_path/utt2spk_all
@@ -52,6 +52,6 @@ ${s5_path}/utils/fix_data_dir.sh $scp_path || exit 1;
 
 echo "prepared!"
 
-gmm-latgen-faster --max-active=7000 --beam=13.0 --lattice-beam=6.0 --acoustic-scale=0.083333 --word-symbol-table=${words_u} ${model_u} ${hclg_u} "ark,s,cs:apply-cmvn  --utt2spk=ark:${utt2spk_u} scp:${cmvn_u} scp:${feats_u} ark:- | splice-feats  ark:- ark:- | transform-feats ${models_path}/final.mat ark:- ark:- |" "ark:|gzip -c > ${result_path}/lat.1.gz"
+gmm-latgen-faster --max-active=7000 --beam=13.0 --lattice-beam=6.0 --acoustic-scale=0.083333 --word-symbol-table=${words_u} ${model_u} ${hclg_u} "ark,s,cs:apply-cmvn  --utt2spk=ark:${utt2spk_u} scp:${cmvn_u} scp:${feats_u} ark:- | splice-feats  ark:- ark:- | transform-feats ${models_path}/final.mat ark:- ark:- |" "ark:|gzip -c >/dev/null"
 
 exit 0;
