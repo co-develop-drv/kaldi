@@ -1,6 +1,6 @@
 #!/bin/bash
 
-root_dir="/export1/kaldi-ali/kaldi-trunk"
+root_dir="/.../kaldi-trunk"
 base_path=${root_dir}/egs/aishell
 online_path=${base_path}/online
 s5_path=${base_path}/s5
