@@ -67,7 +67,7 @@ echo ""
 # tri4
 # tri5（SAT）
 
-gmm-latgen-faster --max-active=2000 --beam=8.0 --lattice-beam=6.0 --acoustic-scale=0.083333 --allow-partial=true --word-symbol-table=${words_u} ${models_path}/final.alimdl ${hclg_u} "ark,s,cs:apply-cmvn --utt2spk=ark:${utt2spk_u} scp:${cmvn_u} scp:${feats_u} ark:- | splice-feats ark:- ark:- | transform-feats ${models_path}/final.mat ark:- ark:- |" "ark:-"
+gmm-latgen-faster --max-active=2000 --beam=8.0 --lattice-beam=6.0 --acoustic-scale=0.083333 --allow-partial=true --word-symbol-table=${words_u} ${models_path}/final.alimdl ${hclg_u} "ark,s,cs:apply-cmvn --utt2spk=ark:${utt2spk_u} scp:${cmvn_u} scp:${feats_u} ark:- | splice-feats ark:- ark:- | transform-feats ${models_path}/final.mat ark:- ark:- |" "ark:/dev/null"
 
 # gmm-latgen-faster --max-active=2000 --beam=8.0 --lattice-beam=6.0 --acoustic-scale=0.083333 --allow-partial=true --word-symbol-table=exp/tri5a/graph/words.txt exp/tri5a/final.alimdl exp/tri5a/graph/HCLG.fst "ark,s,cs:apply-cmvn  --utt2spk=ark:data/dev/split1/1/utt2spk scp:data/dev/split1/1/cmvn.scp scp:data/dev/split1/1/feats.scp ark:- | splice-feats  ark:- ark:- | transform-feats exp/tri5a/final.mat ark:- ark:- |" "ark:-"
 
