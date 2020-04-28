@@ -77,7 +77,7 @@ echo "prepared!"
 
 # gmm-latgen-faster --max-active=7000 --beam=13.0 --lattice-beam=6.0 --acoustic-scale=0.083333 --word-symbol-table=${words_u} ${model_u} ${hclg_u} "ark,s,cs:apply-cmvn  --utt2spk=ark:${utt2spk_u} scp:${cmvn_u} scp:${feats_u} ark:- | splice-feats  ark:- ark:- | transform-feats ${models_path}/final.mat ark:- ark:- |" "ark:|gzip -c > ${output_path}/lat.1.gz"
 
-gmm-latgen-faster --max-active=7000 --beam=13.0 --lattice-beam=11.0 --determinize-lattice=false --word-symbol-table=${words_u} ${model_u} ${hclg_u} "ark,s,cs:apply-cmvn  --utt2spk=ark:${utt2spk_u} scp:${cmvn_u} scp:${feats_u} ark:- | splice-feats  ark:- ark:- | transform-feats ${models_path}/final.mat ark:- ark:- |" "ark:-"
+gmm-latgen-faster --max-active=7000 --beam=13.0 --lattice-beam=11.0 --determinize-lattice=false --word-symbol-table=${words_u} ${model_u} ${hclg_u} "ark,s,cs:apply-cmvn  --utt2spk=ark:${utt2spk_u} scp:${cmvn_u} scp:${feats_u} ark:- | splice-feats  ark:- ark:- | transform-feats ${models_path}/final.mat ark:- ark:- |" "ark:/dev/null"
 
 # gmm-latgen-faster --max-active=2000 --beam=8.0 --lattice-beam=6.0 --acoustic-scale=0.083333 --allow-partial=true --word-symbol-table=${words_u} ${models_path}/final.alimdl ${hclg_u} "ark,s,cs:apply-cmvn --utt2spk=ark:${utt2spk_u} scp:${cmvn_u} scp:${feats_u} ark:- | splice-feats ark:- ark:- | transform-feats ${models_path}/final.mat ark:- ark:- |" "ark:-"
 
