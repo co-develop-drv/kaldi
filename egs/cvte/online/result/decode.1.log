@@ -1,0 +1,26 @@
+# nnet3-latgen-faster --frame-subsampling-factor=3 --frames-per-chunk=50 --extra-left-context=0 --extra-right-context=0 --extra-left-context-initial=-1 --extra-right-context-final=-1 --minimize=false --max-active=7000 --min-active=200 --beam=15.0 --lattice-beam=8.0 --acoustic-scale=1.0 --allow-partial=true --word-symbol-table=exp/chain/tdnn/graph/words.txt exp/chain/tdnn/final.mdl exp/chain/tdnn/graph/HCLG.fst "ark,s,cs:apply-cmvn --norm-means=true --norm-vars=false --utt2spk=ark:data/test/split1/1/utt2spk scp:data/test/split1/1/cmvn.scp scp:data/test/split1/1/feats.scp ark:- |" "ark:|lattice-scale --acoustic-scale=10.0 ark:- ark:/dev/null" 
+# Started at Thu May 21 17:02:23 CST 2020
+#
+nnet3-latgen-faster --frame-subsampling-factor=3 --frames-per-chunk=50 --extra-left-context=0 --extra-right-context=0 --extra-left-context-initial=-1 --extra-right-context-final=-1 --minimize=false --max-active=7000 --min-active=200 --beam=15.0 --lattice-beam=8.0 --acoustic-scale=1.0 --allow-partial=true --word-symbol-table=exp/chain/tdnn/graph/words.txt exp/chain/tdnn/final.mdl exp/chain/tdnn/graph/HCLG.fst 'ark,s,cs:apply-cmvn --norm-means=true --norm-vars=false --utt2spk=ark:data/test/split1/1/utt2spk scp:data/test/split1/1/cmvn.scp scp:data/test/split1/1/feats.scp ark:- |' 'ark:|lattice-scale --acoustic-scale=10.0 ark:- ark:/dev/null' 
+LOG (nnet3-latgen-faster[5.5.690~1-9b4dc]:RemoveOrphanNodes():nnet-nnet.cc:948) Removed 1 orphan nodes.
+LOG (nnet3-latgen-faster[5.5.690~1-9b4dc]:RemoveOrphanComponents():nnet-nnet.cc:847) Removing 2 orphan components.
+LOG (nnet3-latgen-faster[5.5.690~1-9b4dc]:Collapse():nnet-utils.cc:1472) Added 1 components, removed 2
+lattice-scale --acoustic-scale=10.0 ark:- ark:/dev/null 
+apply-cmvn --norm-means=true --norm-vars=false --utt2spk=ark:data/test/split1/1/utt2spk scp:data/test/split1/1/cmvn.scp scp:data/test/split1/1/feats.scp ark:- 
+LOG (nnet3-latgen-faster[5.5.690~1-9b4dc]:CheckAndFixConfigs():nnet-am-decodable-simple.cc:294) Increasing --frames-per-chunk from 50 to 51 to make it a multiple of --frame-subsampling-factor=3
+3gdb 三个代表 重要 思想 形成 的 历史 条件 当代 世界 的 新 变化 三个代表 重要 思想 形成 的 时代 背景 社会主义 兴衰 成败 的 历史 经验 是 三个代表 重要 思想 形成 的 历史 依据 国情 和 党 情 的 变化 是 三个代表 重要 思想 形成 的 现实 依据 
+LOG (nnet3-latgen-faster[5.5.690~1-9b4dc]:DecodeUtteranceLatticeFaster():decoder-wrappers.cc:375) Log-like per frame for utterance 3gdb is 1.98298 over 794 frames.
+D6_750 东北军 的 一些 爱国 将领 马占 山 里 度 唐 聚 伍 苏 秉 爱 邓 铁梅 等 也 奋起 抗战 
+LOG (nnet3-latgen-faster[5.5.690~1-9b4dc]:DecodeUtteranceLatticeFaster():decoder-wrappers.cc:375) Log-like per frame for utterance D6_750 is 2.23849 over 283 frames.
+D6_751 王英 汉 被 枪毙 后 部分 余孽 深 藏起来 几次 围捕 均 未 抓获 
+LOG (nnet3-latgen-faster[5.5.690~1-9b4dc]:DecodeUtteranceLatticeFaster():decoder-wrappers.cc:375) Log-like per frame for utterance D6_751 is 2.23175 over 206 frames.
+LOG (apply-cmvn[5.5.690~1-9b4dc]:main():apply-cmvn.cc:162) Applied cepstral mean normalization to 4 utterances, errors on 0
+D6_752 他们 走到 司马 陆 宜家 查实 铺里 阿九 说 要 须臾 他 给 买 了 又 给 侄儿 买 了 饼干 
+LOG (nnet3-latgen-faster[5.5.690~1-9b4dc]:DecodeUtteranceLatticeFaster():decoder-wrappers.cc:375) Log-like per frame for utterance D6_752 is 2.10686 over 231 frames.
+LOG (nnet3-latgen-faster[5.5.690~1-9b4dc]:main():nnet3-latgen-faster.cc:256) Time taken 51.4575s: real-time factor assuming 100 frames/sec is 1.13293
+LOG (nnet3-latgen-faster[5.5.690~1-9b4dc]:main():nnet3-latgen-faster.cc:259) Done 4 utterances, failed for 0
+LOG (nnet3-latgen-faster[5.5.690~1-9b4dc]:main():nnet3-latgen-faster.cc:261) Overall log-likelihood per frame is 2.08349 over 1514 frames.
+LOG (nnet3-latgen-faster[5.5.690~1-9b4dc]:~CachingOptimizingCompiler():nnet-optimize.cc:710) 0.0192 seconds taken in nnet3 compilation total (breakdown: 0.0103 compilation, 0.00647 optimization, 0 shortcut expansion, 0.00135 checking, 1.91e-05 computing indexes, 0.00113 misc.) + 0 I/O.
+LOG (lattice-scale[5.5.690~1-9b4dc]:main():lattice-scale.cc:107) Done 4 lattices.
+# Accounting: time=144 threads=1
+# Ended (code 0) at Thu May 21 17:04:47 CST 2020, elapsed time 144 seconds

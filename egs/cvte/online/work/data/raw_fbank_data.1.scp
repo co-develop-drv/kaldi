@@ -1,0 +1,5 @@
+3gdb /export1/kaldi/egs/cvte/online/work/data/raw_fbank_data.1.ark:5
+D6_750 /export1/kaldi/egs/cvte/online/work/data/raw_fbank_data.1.ark:95633
+D6_751 /export1/kaldi/egs/cvte/online/work/data/raw_fbank_data.1.ark:129901
+D6_752 /export1/kaldi/egs/cvte/online/work/data/raw_fbank_data.1.ark:154929
+cv4 /export1/kaldi/egs/cvte/online/work/data/raw_fbank_data.1.ark:182954
