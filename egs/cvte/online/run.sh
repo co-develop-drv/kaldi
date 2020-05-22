@@ -35,6 +35,8 @@ steps/nnet3/decode.sh --acwt 1.0 --post-decode-acwt 10.0 \
   --frames-per-chunk 50 \
   $dir/graph $obj_dir # $dir/decode_test
 
+. ./extract.sh
+
 # # note: the model is trained using "apply-cmvn-online",
 # # so you can modify the corresponding code in steps/nnet3/decode.sh to obtain the best performance,
 # # but if you directly steps/nnet3/decode.sh, 
