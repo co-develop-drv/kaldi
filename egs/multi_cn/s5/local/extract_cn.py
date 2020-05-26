@@ -20,3 +20,5 @@ def extract():
 if __name__ == "__main__":
     result = extract()
     print(str(result).strip('[').strip(']'))
+
+    # awk -v arr="${lines}" -v dict_dir="$dict_dir" 'BEGIN{split(arr,line_arr,","); i=1;}{if(NR==line_arr[i]){ if(i < length(line_arr)){i+=1;} print $0 >> dict_dir"/lexicon-en/words-en-oov-other.txt";} else{print $0 >> dict_dir"/lexicon-en/words-en-oov.txt";} }' $dict_dir/lexicon-en/words-en-oov-all.txt
