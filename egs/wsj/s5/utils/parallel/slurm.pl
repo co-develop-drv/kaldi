@@ -499,6 +499,9 @@ if (! $sync) { # We're not submitting with -sync y, so we
         if ( -f $f ) { next; }; #syncfile appeared: OK.
         # system(...) : To get the actual exit value, shift $ret right by eight bits.
         my ($squeue_output, $squeue_status) = exec_command("squeue -j $sge_job_id");
+        
+        print "111111111111111111111111111111111111111111";
+        
         if ($squeue_status == 1) {
           # Don't consider immediately missing job as error, first wait some
           sleep(4);
