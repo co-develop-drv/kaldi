@@ -52,6 +52,7 @@ cat $cleantext | awk -v wmap=$dir/word_map 'BEGIN{while((getline<wmap)>0)map[$1]
   { for(n=1;n<=NF;n++) { printf map[$n]; if(n<NF){ printf " "; } else { print ""; }}}' | gzip -c >$dir/train.gz \
    || exit 1;
 
+# kaldi/tools/kaldi_lm/train_lm.sh
 train_lm.sh --arpa --lmtype 3gram-mincount $dir || exit 1;
 
 # LM is small enough that we don't need to prune it (only about 0.7M N-grams).
