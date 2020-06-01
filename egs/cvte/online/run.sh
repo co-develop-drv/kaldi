@@ -1,4 +1,5 @@
 #!/bin/bash
+# http://www.kaldi-asr.org/models/m2
 
 # todo 测试一下十秒切一段的方式，识别效果如何
 
