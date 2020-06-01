@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# http://www.kaldi-asr.org/models/m2
+# todo 测试一下十秒切一段的方式，识别效果如何
 
 . ./cmd.sh
 . ./path.sh
@@ -10,9 +10,10 @@ obj_dir=data/test
 audio_path=data/wav
 
 rm -rf $obj_dir/*
+
 find $audio_path -iname "*.wav" > $obj_dir/wav.flist
-sed -e 's/\.wav//' $obj_dir/wav.flist | awk -F '/' '{print $NF}' > $obj_dir/utt.list
-sed -e 's/\.wav//' $obj_dir/wav.flist | awk -F '/' '{i=NF-1;printf("%s %s\n",$NF,$i)}' > $obj_dir/utt2spk_all
+sed -e 's/\.wav//' $obj_dir/wav.flist | awk -F '/' '{i=NF-1;printf("%s-%s\n",$i,$NF)}' > $obj_dir/utt.list
+sed -e 's/\.wav//' $obj_dir/wav.flist | awk -F '/' '{i=NF-1;printf("%s-%s %s\n",$i,$NF,$i)}' > $obj_dir/utt2spk_all
 paste -d' ' $obj_dir/utt.list $obj_dir/wav.flist > $obj_dir/wav.scp_all
 utils/filter_scp.pl -f 1 $obj_dir/utt.list $obj_dir/utt2spk_all | sort -u > $obj_dir/utt2spk
 utils/filter_scp.pl -f 1 $obj_dir/utt.list $obj_dir/wav.scp_all | sort -u > $obj_dir/wav.scp
