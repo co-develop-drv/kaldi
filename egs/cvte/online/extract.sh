@@ -2,13 +2,14 @@
 
 # list=`ls data/wav`
 list=`find data/wav -iname "*.wav"`
-echo '' > result.txt
 
 for dir in $list; do
 (
     wav=`basename $dir .wav`
-    grep ^$wav log/* >> result.txt
+    wav_path=`dirname $dir`
+    output=$(basename "$wav_path")-${wav}
+    grep ^${output} log/* >> result/${output}.txt
 )
-done 
+done
 
-cat result.txt
+cat result/*.txt
