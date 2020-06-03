@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mv result/* result-bak/
+
 # list=`ls data/wav`
 list=`find data/wav -iname "*.wav"`
 
